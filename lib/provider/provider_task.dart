@@ -7,10 +7,14 @@ import '/models/item.dart';
 
 class TaskItems with ChangeNotifier {
   List<Items> taskList = [
-    Items(title: 'You can scroll the task to view it', time: ''),
-    Items(title: 'Add more tasks by pressing the floating button', time: ''),
-    Items(title: 'Tap on the circle to mark/unmark as done', time: ''),
-    Items(title: 'Long press a Task to delete it', time: ''),
+    Items(title: 'You can scroll the task to view it', time: '', info: ''),
+    Items(
+        title: 'Add more tasks by pressing the floating button',
+        time: '',
+        info: ''),
+    Items(
+        title: 'Tap on the circle to mark/unmark as done', time: '', info: ''),
+    Items(title: 'Long press a Task to delete it', time: '', info: ''),
   ];
 
   SharedPreferences? sharedPreferences;

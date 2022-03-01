@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../provider/provider_done.dart';
 import '/models/item.dart';
 import '../provider/provider_task.dart';
+import 'task_info.dart';
 
 class TaskRow extends StatelessWidget {
   const TaskRow({Key? key, required this.item}) : super(key: key);
@@ -32,6 +33,11 @@ class TaskRow extends StatelessWidget {
               GestureDetector(
                   onLongPress: () {
                     state.deleteTask(item);
+                  },
+                  onTap: () {
+                    showDialog(
+                        context: (context),
+                        builder: (context) => TaskInfo(item: item));
                   },
                   child: Container(
                     decoration: BoxDecoration(

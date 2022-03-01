@@ -22,6 +22,7 @@ class _AddCategorizeState extends State<AddCategorize> {
   }
 
   var categorizeController = TextEditingController();
+  var categorizeController2 = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -47,14 +48,27 @@ class _AddCategorizeState extends State<AddCategorize> {
             autofocus: true,
             controller: categorizeController,
           ),
+          TextFormField(
+            style: const TextStyle(color: Colors.white),
+            keyboardType: TextInputType.multiline,
+            maxLines: null,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Info',
+            ),
+            autofocus: false,
+            controller: categorizeController2,
+          ),
           Padding(
             padding: const EdgeInsets.all(10),
             child: ElevatedButton(
                 onPressed: () {
                   Items item = Items(
                       title: categorizeController.text,
-                      time: DateFormat('kk:mm aaa,  MMMM dd')
-                          .format(DateTime.now()));
+                      time: DateFormat(
+                        'kk:mm aaa,  MMMM dd',
+                      ).format(DateTime.now()),
+                      info: categorizeController2.text);
                   Provider.of<TaskItems>(context, listen: false).addTask(item);
                   Navigator.pop(context);
                 },
