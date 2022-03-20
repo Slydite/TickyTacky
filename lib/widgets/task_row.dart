@@ -4,7 +4,7 @@ import '../provider/provider_done.dart';
 import '/models/item.dart';
 import '../provider/provider_task.dart';
 import 'task_info.dart';
-import 'dart:io';
+
 import "dart:async";
 
 class TaskRow extends StatefulWidget {
@@ -30,15 +30,13 @@ class _TaskRowState extends State<TaskRow> {
                   setState(() {
                     filler = Colors.yellow;
                   });
-                  //sleep(Duration(seconds: 1));
-                  Timer(Duration(seconds: 1), () {
+
+                  Timer(const Duration(seconds: 1), () {
                     Provider.of<DoneItems>(context, listen: false)
                         .addDone(widget.item);
                     state.deleteTask(widget.item);
                     filler = Colors.transparent;
                   });
-
-                  // Future.delayed(Duration(milliseconds: 1000), () {});
                 },
                 child: SizedBox(
                   width: 30,
