@@ -28,10 +28,10 @@ class MyApp extends StatelessWidget {
           title: 'TickyTacky',
           theme: ThemeData(
             colorScheme: ColorScheme.fromSwatch().copyWith(
-              primary: const Color.fromARGB(255, 53, 53, 144),
-              secondary: const Color.fromARGB(255, 53, 53, 144),
+              primary: Colors.blue,
+              secondary: Colors.blue,
             ),
-            primaryColor: const Color.fromARGB(255, 38, 38, 70),
+            primaryColor: Colors.blue,
             canvasColor: const Color.fromARGB(255, 19, 18, 20),
             bottomSheetTheme: const BottomSheetThemeData(
               modalBackgroundColor: Color.fromARGB(255, 38, 38, 70),

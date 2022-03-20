@@ -42,22 +42,33 @@ class _AddCategorizeState extends State<AddCategorize> {
               return null;
             },
             decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Title',
-            ),
+                border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.yellow, width: 2)),
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue, width: 2)),
+                labelText: 'Title',
+                labelStyle: TextStyle(color: Colors.blue)),
             autofocus: true,
             controller: categorizeController,
           ),
-          TextFormField(
-            style: const TextStyle(color: Colors.white),
-            keyboardType: TextInputType.multiline,
-            maxLines: null,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Info',
+          const SizedBox(height: 30),
+          Container(
+            constraints: const BoxConstraints(maxHeight: 200),
+            child: TextFormField(
+              style: const TextStyle(color: Colors.white),
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.yellow, width: 2)),
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue, width: 2)),
+                labelText: 'Info',
+                labelStyle: TextStyle(color: Colors.blue),
+              ),
+              autofocus: false,
+              controller: categorizeController2,
             ),
-            autofocus: false,
-            controller: categorizeController2,
           ),
           Padding(
             padding: const EdgeInsets.all(10),

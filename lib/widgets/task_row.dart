@@ -4,11 +4,19 @@ import '../provider/provider_done.dart';
 import '/models/item.dart';
 import '../provider/provider_task.dart';
 import 'task_info.dart';
+import 'dart:io';
+import "dart:async";
 
-class TaskRow extends StatelessWidget {
+class TaskRow extends StatefulWidget {
   const TaskRow({Key? key, required this.item}) : super(key: key);
   final Items item;
 
+  @override
+  State<TaskRow> createState() => _TaskRowState();
+}
+
+class _TaskRowState extends State<TaskRow> {
+  Color filler = Colors.transparent;
   @override
   Widget build(BuildContext context) {
     return Consumer<TaskItems>(builder: (context, state, child) {
@@ -19,8 +27,18 @@ class TaskRow extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () {
-                  Provider.of<DoneItems>(context, listen: false).addDone(item);
-                  state.deleteTask(item);
+                  setState(() {
+                    filler = Colors.yellow;
+                  });
+                  //sleep(Duration(seconds: 1));
+                  Timer(Duration(seconds: 1), () {
+                    Provider.of<DoneItems>(context, listen: false)
+                        .addDone(widget.item);
+                    state.deleteTask(widget.item);
+                    filler = Colors.transparent;
+                  });
+
+                  // Future.delayed(Duration(milliseconds: 1000), () {});
                 },
                 child: SizedBox(
                   width: 30,
@@ -32,15 +50,17 @@ class TaskRow extends StatelessWidget {
               ),
               GestureDetector(
                   onLongPress: () {
-                    state.deleteTask(item);
+                    state.deleteTask(widget.item);
                   },
                   onTap: () {
                     showDialog(
                         context: (context),
-                        builder: (context) => TaskInfo(item: item));
+                        builder: (context) => TaskInfo(item: widget.item));
                   },
-                  child: Container(
+                  child: AnimatedContainer(
+                    duration: const Duration(seconds: 1),
                     decoration: BoxDecoration(
+                        color: filler,
                         border: Border.all(color: Colors.yellow),
                         borderRadius:
                             const BorderRadius.all(Radius.circular(20))),
@@ -52,7 +72,7 @@ class TaskRow extends StatelessWidget {
                           Consumer<TaskItems>(builder: (context, state, child) {
                         return SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
-                            child: Text(item.title,
+                            child: Text(widget.item.title,
                                 style: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold)));
@@ -74,7 +94,7 @@ class TaskRow extends StatelessWidget {
               Consumer<TaskItems>(
                 builder: (context, state, child) {
                   return Text(
-                    item.time,
+                    widget.item.time,
                     style: TextStyle(
                         color: Colors.grey[400], fontWeight: FontWeight.bold),
                   );

@@ -14,7 +14,7 @@ class TaskItems with ChangeNotifier {
         info: ''),
     Items(
         title: 'Tap on the circle to mark/unmark as done', time: '', info: ''),
-    Items(title: 'Long press a Task to delete it', time: '', info: ''),
+    Items(title: 'Tap the task to view its details', time: '', info: ''),
   ];
 
   SharedPreferences? sharedPreferences;

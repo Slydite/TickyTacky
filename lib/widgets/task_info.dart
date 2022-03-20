@@ -12,13 +12,6 @@ class TaskInfo extends StatelessWidget {
     return Consumer<TaskItems>(builder: (context, state, child) {
       return AlertDialog(
         backgroundColor: const Color.fromARGB(255, 19, 18, 20),
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Text(item.time,
-                style: const TextStyle(color: Colors.white, fontSize: 12)),
-          ],
-        ),
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(20))),
         content: Column(
@@ -26,11 +19,25 @@ class TaskInfo extends StatelessWidget {
           children: [
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              child: Text(item.title,
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18)),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(item.title,
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18)),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(item.time,
+                      style:
+                          const TextStyle(color: Colors.white, fontSize: 12)),
+                ],
+              ),
             ),
             const SizedBox(height: 10),
             Padding(
